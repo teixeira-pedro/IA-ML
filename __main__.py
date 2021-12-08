@@ -68,13 +68,22 @@ dt_train=[]
 dt_test=[]
 for i in range(int(0.7*len(dt))):
     dt_train.append(dt[i])
-print(dt_train)
+#print(dt_train)
 print(i,'/',len(dt))
 for i in range(i,len(dt)):
     dt_test.append(dt[i])
 
-XX_test=convert_to_matriz_de_exemplos_X(dt_train,'x')
-yy_test=convert_to_matriz_de_exemplos_X(dt_train,'y')
+XX_train=convert_to_matriz_de_exemplos_X(dt_train,'x')
+yy_train=convert_to_matriz_de_exemplos_X(dt_train,'y')
+
+XX_test=convert_to_matriz_de_exemplos_X(dt_test,'x')
+yy_test=convert_to_matriz_de_exemplos_X(dt_test,'y')
+
 
 LR=LogisticRegression()
-LR.fit(XX_test,yy_test)
+LR.fit(XX_train,yy_train)
+
+predictions=LR.predict(XX_test[0:10])
+
+print('predições do modelo',predictions)
+print('y_real',yy_test[0:10])
