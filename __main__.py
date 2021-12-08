@@ -2,6 +2,17 @@ __name__='__main__'
 from csv import reader
 from sklearn.linear_model import LogisticRegression
 
+def convert_M_F_to_0_1(vals,key,campo_MF):
+    resp=[]
+    for v in vals:
+        nv=v
+        if nv[key][campo_MF]=='M':
+            nv[key][campo_MF]=0
+        elif nv[key][campo_MF]=='F':
+            nv[key][campo_MF] = 1
+        resp.append(nv)
+    return resp
+
 
 def convert_to_matriz_de_exemplos_X(vals,key):
     VALSX=[]
@@ -30,12 +41,12 @@ def get_data(arq):
             #print(x_i,y_i)
     return resp
 
-
-dt=get_data('C:\\Users\\Public\\iaml\\bodyPerformance.csv')
+dt=convert_M_F_to_0_1(get_data('C:\\Users\\Public\\iaml\\bodyPerformance.csv'),'x',1)
 dt_train=[]
 dt_test=[]
 for i in range(int(0.7*len(dt))):
     dt_train.append(dt[i])
+print(dt_train)
 print(i,'/',len(dt))
 for i in range(i,len(dt)):
     dt_test.append(dt[i])
