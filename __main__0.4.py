@@ -2,6 +2,7 @@ __name__='__main__'
 from csv import reader
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import cross_val_score
+from sklearn.model_selection import train_test_split
 
 def convert_M_F_to_0_1(vals,key,campo_MF):
     resp=[]
@@ -78,15 +79,9 @@ def get_data(arq):
 
 #==================IMPORTANDO O ARQUIVO, TRANSFORMANDO EM MATRIZ E SEPARANDO O GRUPO DE TESTE E DE TREINO============
 dt=convert_M_F_to_0_1(get_data_bin_classe_A_notA('C:\\Users\\Public\\iaml\\csv_tratado_binario.csv'),'x',1)
-dt_train=[]
-dt_test=[]
-for i in range(int(0.7*len(dt))):
-    dt_train.append(dt[i])
-print(i,'/',len(dt))
-for i in range(i,len(dt)):
-    dt_test.append(dt[i])
-#for i in dt_train:
-#    print(i)
+dt_train,dt_test=train_test_split(dt,test_size=0.3,random_state=1)
+print(len(dt_train),'/',len(dt))
+
 #==================IMPORTANDO O ARQUIVO, TRANSFORMANDO EM MATRIZ E SEPARANDO O GRUPO DE TESTE E DE TREINO============
 
 
