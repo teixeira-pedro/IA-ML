@@ -96,9 +96,9 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 warnings.filterwarnings("ignore")
 
 #====================INSTANCIAS LR======================
-LR_A_notA=LogisticRegression()
-LR_B_notB=LogisticRegression()
-LR_C_or_D=LogisticRegression()
+LR_A_notA=LogisticRegression(multi_class='multinomial')
+LR_B_notB=LogisticRegression(multi_class='multinomial')
+LR_C_or_D=LogisticRegression(multi_class='multinomial')
 #====================INSTANCIAS LR======================
 
 #====================VETORES Y DE EXEMPLOS S MATRIZ DE EXEMPLOS======================
